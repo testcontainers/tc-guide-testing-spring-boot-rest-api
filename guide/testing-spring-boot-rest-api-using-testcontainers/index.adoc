@@ -43,7 +43,7 @@ We are going to test API using RestAssured, so let us add the rest-assured libra
 If you have selected the Maven build tool you can see the following SpringBoot starters and
 Testcontainers postgres module dependencies are added to pom.xml.
 
-[source,groovy]
+[source,xml]
 ----
 include::{codebase}/pom.xml[lines="18..68"]
 ----
