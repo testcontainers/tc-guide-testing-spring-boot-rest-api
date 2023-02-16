@@ -16,47 +16,37 @@ In this guide you will learn how to
 == Prerequisites
 * Java 17+
 * Your favorite IDE(Intellij IDEA, Eclipse, NetBeans, VS Code)
-* Testcontainers supporting Docker environment https://www.testcontainers.org/supported_docker_environment/
+* A Docker environment supported by Testcontainers https://www.testcontainers.org/supported_docker_environment/
 
 == What we are going to achieve in this guide
-We are going to create a SpringBoot project using Spring Data JPA, Postgres and
-implement a REST API endpoint to return all the customer details.
-Then we will test the API using Testcontainers postgres module and RestAssured.
+We are going to create a Spring Boot project using Spring Data JPA together with Postgres and
+implement a REST API endpoint to return all the customer details that are stored in the database.
+Then we will test this API using the *Testcontainers* Postgres module and *RestAssured*.
 
 == Getting Started
-You can create a new SpringBoot project from Spring Initializr by selecting Spring Web,
-Spring Data JPA, PostgreSQL Driver and Testcontainers starters.
+You can create a new Spring Boot project from https://start.spring.io[Spring Initializr] by selecting the *Spring Web*,
+*Spring Data JPA*, *PostgreSQL Driver* and *Testcontainers* starters.
 
-Or you can clone https://github.com/testcontainers/tc-guide-spring-boot-rest-api-testing-guide.git repository
-and switch to the initial branch.
+Instead, you can clone https://github.com/testcontainers/tc-guide-spring-boot-rest-api-testing-guide.git repository
+and switch to the *initial* branch.
 
-We are going to test API using RestAssured, so let us add the rest-assured library dependency:
-[source,xml]
-----
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-    <scope>test</scope>
-</dependency>
-----
-
-If you have selected the Maven build tool you can see the following SpringBoot starters and
-Testcontainers postgres module dependencies are added to pom.xml.
+If you have selected the *Maven* build tool you can see that the following Spring Boot starters
+as well as the *Testcontainers* Postgres module dependencies are added to the *pom.xml*.
 
 [source,xml,indent=0]
 ----
-include::{codebase}/pom.xml[lines="18..68"]
+include::{codebase}/pom.xml[lines="18..50,56..67"]
 ----
 
-If you have selected the Gradle build tool then build.gradle is configured with selected dependencies.
+If you have selected the Gradle build tool instead, then the *build.gradle* file is configured with the selected dependencies.
 
 [source,groovy,indent=0]
 ----
-include::{codebase}/build.gradle[lines="20..40"]
+include::{codebase}/build.gradle[lines="20..31,33:39"]
 ----
 
-Using Testcontainers BOM (Bill Of Material) is highly recommended so that you don't have to repeat
-testcontainers version while using multiple Testcontainers modules.
+Using the Testcontainers' *BOM* (Bill Of Material) is highly recommended so that you don't have to
+repeat the Testcontainers version for every individual Testcontainers module dependency
 
 == Create JPA entity
 First let us start with creating a JPA entity *Customer.java*.
@@ -67,10 +57,11 @@ include::{codebase}/src/main/java/com/testcontainers/demo/Customer.java[]
 ----
 
 == Create Spring Data JPA Repository
-Spring Data JPA is an abstraction on top of JPA by providing basic CRUD operations,
+Spring Data JPA is an abstraction on top of JPA and provides basic CRUD operations,
 sorting and pagination capabilities and dynamic query generation from method names.
 
-Let us create a Spring Data Jpa repository interface for the Customer entity.
+Let us create a Spring Data JPA repository interface for the *Customer* entity.
+
 
 [source,java]
 ----
@@ -78,18 +69,19 @@ include::{codebase}/src/main/java/com/testcontainers/demo/CustomerRepository.jav
 ----
 
 == Add Schema Creation Script
-As we are not using any in-memory database, we need to create postgres database tables by some means.
-The recommended approach is to use some database migration tool like Flyway or Liquibase,
-but for this guide we will use simple schema initialization support provided by SpringBoot.
+As we are not using any in-memory database, we need to create the Postgres database tables by some means.
+The recommended approach is to use some database migration tool like *Flyway* or *Liquibase*,
+but for this guide we will use simple schema initialization support provided by Spring Boot.
 
-Create schema.sql file with following SQL script under src/main/resources directory.
+Create a *schema.sql* file with the following content under the *src/main/resources* directory.
 
 [source,sql]
 ----
 include::{codebase}/src/main/resources/schema.sql[]
 ----
 
-We need to enable schema initialization by adding the following property in src/main/resources/application.properties file.
+We also need to enable schema initialization by adding the following property in
+the *src/main/resources/application.properties* file.
 
 [source,properties]
 ----
@@ -97,7 +89,7 @@ spring.sql.init.mode=always
 ----
 
 == Create REST API endpoint
-Create a controller to implement a REST API endpoint to get all customers.
+Finally, create a controller to implement a REST API endpoint to fetch all customers from the database.
 
 [source,java]
 ----
@@ -105,13 +97,33 @@ include::{codebase}/src/main/java/com/testcontainers/demo/CustomerController.jav
 ----
 
 == Write Test for API endpoint
-We are going to write a test for REST API GET /api/customers endpoint by starting the SpringBoot application
-using @SpringBootTest annotation and invoke APIs using RestAssured.
+We are going to write a test for the REST API *GET /api/customers* endpoint by starting the Spring context
+using the *@SpringBootTest* annotation and invoke the APIs using *RestAssured*.
 
-But in order to start our SpringBoot application we need a Postgres database up and running and
-configure the application to talk to that database. This is where Testcontainers comes into the picture.
+First let us add the *rest-assured* library dependency.
 
-We can use the Testcontainers library to spin up a Postgres database instance as a docker container and
+If you are using *Maven* then add the following dependency in *pom.xml* file.
+
+[source,xml]
+----
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <scope>test</scope>
+</dependency>
+----
+
+If you are using *Gradle* build tool then add the following dependency in *build.gradle* file.
+
+[source,groovy]
+----
+testImplementation 'io.rest-assured:rest-assured'
+----
+
+But in order to successfully start our Spring context we need a Postgres database up and running and
+configure the context to talk to that database. This is where Testcontainers comes into the picture.
+
+We can use the Testcontainers library to spin up a Postgres database instance as a Docker container and
 configure the application to talk to that database as follows:
 
 [source,java]
@@ -121,13 +133,13 @@ include::{codebase}/src/test/java/com/testcontainers/demo/CustomerControllerTest
 
 Let us understand what is going on in this test.
 
-* We have annotated the test class with *@SpringBootTest* annotation so that the test will run by starting the entire application on a random available port.
-* We have created an instance of *PostgreSQLContainer* with *postgres:15-alpine* docker image. The postgres container is started using JUnit 5 *@BeforeAll* callback method which gets executed before running any test methods.
-* The Postgres database runs on port 5432 inside the container and maps to a random available port on the Host.
-* We have registered the database connection properties obtained from the Postgres container using SpringBoot's *DynamicPropertyRegistry*.
-* We have captured the random port on which the SpringBoot application started using *@LocalServerPort* and registered the *RestAssured* baseURI.
-* We are deleting customer rows if there exists any using JUnit 5 *@BeforeEach* callback method which gets executed before every test method. This will ensure the predictable data setup for every test.
-* Finally, in the *shouldGetAllCustomers()* test, we have initialized the test data and invoked *GET /api/customers* API endpoint and verified that 2 customer records are returned from the API.
+* We have annotated the test class with the *@SpringBootTest* annotation together with the webEnvironment config, so that the test will run by starting the entire application on a random available port.
+* We have created an instance of *PostgreSQLContainer* using the *postgres:15-alpine* Docker image. The Postgres container is started using JUnit 5 *@BeforeAll* callback method which gets executed before running any test method within a test instance.
+* The Postgres database runs on port 5432 inside the container and maps to a random available port on the host.
+* We have registered the database connection properties dynamically obtained from the Postgres container using Spring Boot's *DynamicPropertyRegistry*.
+* We have injected the random port on which the Spring Boot application started using *@LocalServerPort* and registered the RestAssured *baseURI*.
+* We are deleting all customer rows using JUnit 5 *@BeforeEach* callback method which gets executed before every test method. This will ensure the predictable data setup for every test and circumvent any kind of test pollution.
+* Finally, in the *shouldGetAllCustomers()* test, we have initialized the test data and invoked the *GET /api/customers* API endpoint and verified that 2 customer records are returned from the API.
 
 == Run Test
 
@@ -144,8 +156,8 @@ You should see the Postgres docker container is started and all tests should PAS
 You can also notice that after tests are executed the containers are stopped and removed automatically.
 
 == Summary
-Testcontainers library helped us to write integration tests by using the same type of database, postgres,
-that we use in production as opposed to mocks or in-memory databases.
+The Testcontainers library helped us to write integration tests by using the same type of database, Postgres,
+that we use in production as opposed to Mocks or in-memory databases.
 As we are not using mocks and talking to the real services, we are free to do any code refactoring and
 still ensure that the application is working as expected.
 
