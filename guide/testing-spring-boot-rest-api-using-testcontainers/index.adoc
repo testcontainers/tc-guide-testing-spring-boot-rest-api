@@ -6,7 +6,7 @@ description: This guide will explain how to test SpringBoot and Spring Data JPA 
 repo: https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api
 ---
 :toc:
-:toclevels: 4
+:toclevels: 2
 :codebase: https://raw.githubusercontent.com/testcontainers/tc-guide-testing-spring-boot-rest-api/main
 
 In this guide you will learn how to
