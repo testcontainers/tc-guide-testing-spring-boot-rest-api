@@ -29,7 +29,7 @@ Then we will test this API using the *Testcontainers* Postgres module and *RestA
 You can create a new Spring Boot project from https://start.spring.io[Spring Initializr] by selecting the *Spring Web*,
 *Spring Data JPA*, *PostgreSQL Driver* and *Testcontainers* starters.
 
-Instead, you can clone https://github.com/testcontainers/tc-guide-spring-boot-rest-api-testing-guide.git repository
+Instead, you can clone https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api.git repository
 and switch to the *initial* branch.
 
 If you have selected the *Maven* build tool you can see that the following Spring Boot starters
