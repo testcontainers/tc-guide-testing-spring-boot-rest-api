@@ -1,8 +1,8 @@
 ---
-title: "Getting started with Testcontainers in a Java SpringBoot Project"
+title: "Getting started with Testcontainers in a Java Spring Boot Project"
 date: 2023-02-14T09:39:58+05:30
 draft: false
-description: This guide will explain how to test SpringBoot and Spring Data JPA based REST APIs using Testcontainers.
+description: This guide will explain how to test Spring Boot and Spring Data JPA based REST APIs using Testcontainers.
 repo: https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api
 ---
 :toc:
@@ -11,13 +11,13 @@ repo: https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api
 
 In this guide you will learn how to
 
-* Create a SpringBoot application
+* Create a Spring Boot application
 * Implement a REST API endpoint using Spring MVC, Spring Data Jpa and Postgres
 * Test REST API using Testcontainers and RestAssured.
 
 == Prerequisites
 * Java 17+
-* Your favorite IDE(Intellij IDEA, Eclipse, NetBeans, VS Code)
+* Your favorite IDE (Intellij IDEA, Eclipse, NetBeans, VS Code)
 * A Docker environment supported by Testcontainers https://www.testcontainers.org/supported_docker_environment/
 
 == What we are going to achieve in this guide

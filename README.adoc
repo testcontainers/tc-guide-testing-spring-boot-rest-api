@@ -1,6 +1,6 @@
-= Getting started with Testcontainers in a Java SpringBoot Project
+= Getting started with Testcontainers in a Java Spring Boot Project
 
-This is sample code for [Getting started with Testcontainers in a Java SpringBoot Project](https://testcontainers.com/guides/testing-spring-boot-rest-api-using-testcontainers) Guide.
+This is sample code for [Getting started with Testcontainers in a Java Spring Boot Project](https://testcontainers.com/guides/testing-spring-boot-rest-api-using-testcontainers) Guide.
 
 == 1. Setup Environment
 Make sure you have Java 8+ and a [compatible Docker environment](https://www.testcontainers.org/supported_docker_environment/) installed.
