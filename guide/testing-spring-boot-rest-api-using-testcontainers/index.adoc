@@ -4,6 +4,12 @@ date: 2023-02-14T09:39:58+05:30
 draft: false
 description: This guide will explain how to test Spring Boot and Spring Data JPA based REST APIs using Testcontainers.
 repo: https://github.com/testcontainers/tc-guide-testing-spring-boot-rest-api
+languages:
+  - Java
+tags:
+  - spring-boot
+  - postgresql
+  - rest-assured
 ---
 :toc:
 :toclevels: 2
