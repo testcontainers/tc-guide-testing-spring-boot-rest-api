@@ -172,7 +172,6 @@ still ensure that the application is working as expected.
 To learn more about Testcontainers visit http://testcontainers.com
 
 == Further Reading
-* https://www.testcontainers.org/quickstart/junit_5_quickstart/
-* https://www.testcontainers.org/modules/databases/postgres/
-* https://www.testcontainers.org/modules/databases/jdbc/
-* https://spring.io/blog/2020/03/27/dynamicpropertysource-in-spring-framework-5-2-5-and-spring-boot-2-2-6
+* https://www.testcontainers.org/quickstart/junit_5_quickstart/[Testcontainers JUnit 5 QuickStart]
+* https://www.testcontainers.org/modules/databases/postgres/[Testcontainers Postgres Module]
+* https://www.testcontainers.org/modules/databases/jdbc/[Testcontainers JDBC Support]
