@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootRestApiTestingGuideApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootRestApiTestingGuideApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(SpringBootRestApiTestingGuideApplication.class, args);
+  }
 }

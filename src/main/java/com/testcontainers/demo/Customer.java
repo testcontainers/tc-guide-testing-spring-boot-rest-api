@@ -10,46 +10,46 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "customers")
 class Customer {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
 
-   @Column(nullable = false)
-   private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-   @Column(nullable = false, unique = true)
-   private String email;
+  @Column(nullable = false)
+  private String name;
 
-   public Customer() {
-   }
+  @Column(nullable = false, unique = true)
+  private String email;
 
-   public Customer(Long id, String name, String email) {
-      this.id = id;
-      this.name = name;
-      this.email = email;
-   }
+  public Customer() {}
 
-   public Long getId() {
-      return id;
-   }
+  public Customer(Long id, String name, String email) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+  }
 
-   public void setId(Long id) {
-      this.id = id;
-   }
+  public Long getId() {
+    return id;
+  }
 
-   public String getName() {
-      return name;
-   }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-   public void setName(String name) {
-      this.name = name;
-   }
+  public String getName() {
+    return name;
+  }
 
-   public String getEmail() {
-      return email;
-   }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-   public void setEmail(String email) {
-      this.email = email;
-   }
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 }
