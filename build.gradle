@@ -20,7 +20,7 @@ repositories {
 }
 
 ext {
-    set('testcontainersVersion', "1.19.3")
+    set('testcontainers.version', "1.19.3")
 }
 
 dependencies {
