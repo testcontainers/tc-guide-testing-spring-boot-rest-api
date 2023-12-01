@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.5'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.diffplug.spotless' version "6.23.0"
 }
 
 group = 'com.testcontainers'
@@ -19,7 +20,7 @@ repositories {
 }
 
 ext {
-    set('testcontainersVersion', "1.17.6")
+    set('testcontainers.version', "1.19.3")
 }
 
 dependencies {
@@ -32,17 +33,26 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured'
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-    }
-}
-
 tasks.named('test') {
     useJUnitPlatform()
     testLogging {
         events = ["PASSED", "FAILED", "SKIPPED"]
         showStandardStreams = true
         exceptionFormat = "full"
+    }
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+        prettier(['prettier': '3.0.3', 'prettier-plugin-java': '2.3.0'])
+            .config([
+                'parser': 'java',
+                'tabWidth': 2,
+                'printWidth': 80,
+                'plugins': ['prettier-plugin-java']
+            ])
+        formatAnnotations()
     }
 }
