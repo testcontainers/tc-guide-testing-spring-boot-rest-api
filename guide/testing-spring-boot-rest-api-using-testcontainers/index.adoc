@@ -15,10 +15,10 @@ tags:
 :toclevels: 2
 :codebase: https://raw.githubusercontent.com/testcontainers/tc-guide-testing-spring-boot-rest-api/main
 
-In this guide you will learn how to
+In this guide, you will learn how to
 
 * Create a Spring Boot application
-* Implement a REST API endpoint using Spring MVC, Spring Data Jpa and Postgres
+* Implement a REST API endpoint using Spring MVC, Spring Data JPA, and Postgres
 * Test REST API using Testcontainers and RestAssured.
 
 == Prerequisites
@@ -43,14 +43,14 @@ as well as the *Testcontainers* Postgres module dependencies are added to the *p
 
 [source,xml,indent=0]
 ----
-include::{codebase}/pom.xml[lines="18..50,56..67"]
+include::{codebase}/pom.xml[lines="18..50,56"]
 ----
 
 If you have selected the Gradle build tool instead, then the *build.gradle* file is configured with the selected dependencies.
 
 [source,groovy,indent=0]
 ----
-include::{codebase}/build.gradle[lines="20..31,33:39"]
+include::{codebase}/build.gradle[lines="22..32,34"]
 ----
 
 Using the Testcontainers' *BOM* (Bill Of Material) is highly recommended so that you don't have to
