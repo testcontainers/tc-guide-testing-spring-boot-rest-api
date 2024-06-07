@@ -44,3 +44,14 @@ $ ./mvnw verify  //for Maven
 ```
 
 The tests should pass.
+
+> [!NOTE]
+> The project is configured to automate the code formatting with spotless plugin 
+> using prettier-plugin-java, which internally requires Node.js runtime. 
+> If you don't have Node.js installed and want to disable the code formatting, 
+> you can pass additional parameter to the build command as shown below:
+
+```shell
+./gradlew build -x spotlessCheck //for Gradle
+./mvnw verify -Dspotless.check.skip=true //for Maven
+```

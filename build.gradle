@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.4'
-    id 'com.diffplug.spotless' version "6.23.0"
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.5'
+    id 'com.diffplug.spotless' version "6.25.0"
 }
 
 group = 'com.testcontainers'
@@ -20,7 +20,7 @@ repositories {
 }
 
 ext {
-    set('testcontainers.version', "1.19.3")
+    set('testcontainers.version', "1.19.8")
 }
 
 dependencies {
