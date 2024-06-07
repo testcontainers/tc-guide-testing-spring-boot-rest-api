@@ -142,7 +142,7 @@ include::{codebase}/src/test/java/com/testcontainers/demo/CustomerControllerTest
 Let us understand what is going on in this test.
 
 * We have annotated the test class with the *@SpringBootTest* annotation together with the webEnvironment config, so that the test will run by starting the entire application on a random available port.
-* We have created an instance of *PostgreSQLContainer* using the *postgres:15-alpine* Docker image. The Postgres container is started using JUnit 5 *@BeforeAll* callback method which gets executed before running any test method within a test instance.
+* We have created an instance of *PostgreSQLContainer* using the *postgres:16-alpine* Docker image. The Postgres container is started using JUnit 5 *@BeforeAll* callback method which gets executed before running any test method within a test instance.
 * The Postgres database runs on port 5432 inside the container and maps to a random available port on the host.
 * We have registered the database connection properties dynamically obtained from the Postgres container using Spring Boot's *DynamicPropertyRegistry*.
 * We have injected the random port on which the Spring Boot application started using *@LocalServerPort* and registered the RestAssured *baseURI*.
